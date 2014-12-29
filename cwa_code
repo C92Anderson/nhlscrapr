@@ -1,0 +1,48 @@
+setwd("C:/Users/canderson/Documents/NHL PBP/NHL Java/PBP")
+
+year_list <- c("2007","2008")
+
+
+for(i in year_list){
+  setwd("C:/Users/canderson/Documents/NHL PBP/NHL Java/PBP/[i]")
+  game_list <- (Sys.glob("*.csv"))
+}
+
+#setwd("C:/Users/canderson/Documents/NHL PBP/NHL Java/PBP/2008")
+#game_no <- read.csv(file="20001.csv",header=TRUE, skip=4)
+
+
+install.packages("Hmisc")
+library(Hmisc)
+shot_data <- sasxport.get("C:/Users/canderson/Documents/NHL PBP/shot_data.xpt")
+plot(shot_data$shotdist,shot_data$goal)
+
+felm(goal ~ shotdist | shottype + strength,shot_data)
+
+compile.all.games   (rdata.folder="nhlr-data",
+                     output.folder="source-data",
+                     new.game.table=NULL,
+                     seasons=NULL,
+                     verbose=FALSE,
+                     override.days.back=NULL,
+                     date.check=FALSE)
+
+setwd("C:/Users/canderson/Documents/nhlr-data/nhlr-data")
+load("20142015-21194-processed.RData")
+data <- as.data.frame(game.rec$xy)
+str(game.rec$xy$game)
+
+process.games()
+game_first <- retrieve.game(season="20122013", gcode="20001")
+str(game_first[[1]][,2:6])
+
+master_14 <- grand.data[c(1,2,4,6,7:11)]
+list.files("C:/Users/canderson/Documents/nhlr-data",pattern="proccessed")
+
+shot_data_all <- function() {
+ for () 
+}
+
+master_11 <- grand.data[which(grand.data$etype== c("SOC","SHOT","BLOCK","GOAL")),c(1,2,4,7,20:25,27:28,35:44)]
+
+    
